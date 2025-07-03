@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "TennisDataCollectionApplication",
+            "request": "launch",
+            "mainClass": "xyz.grauberger.application.TennisDataCollectionApplication",
+            "projectName": "tennis-data-collection"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TennisDataCollectionApplicationTest<tennis-data-collection>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "xyz.grauberger.application.TennisDataCollectionApplicationTest",
+            "projectName": "tennis-data-collection",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

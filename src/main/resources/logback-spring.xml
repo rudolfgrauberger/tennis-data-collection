@@ -1,0 +1,26 @@
+<!-- logback-spring.xml -->
+<configuration>
+    <springProfile name="production,environment,staging">
+        <appender name="jsonConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="jsonConsoleAppender"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="default,local">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>
+                    %d{yyyy-MM-dd} | %magenta(%d{HH:mm:ss.SSS}) | %yellow(%-20.20thread) | %highlight(%5p) | %cyan(%-25.25logger{25}) | %m%n
+                </pattern>
+                <charset>utf8</charset>
+            </encoder>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+    </springProfile>
+</configuration>

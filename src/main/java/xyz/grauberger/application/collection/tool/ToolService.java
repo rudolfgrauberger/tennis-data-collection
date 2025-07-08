@@ -30,7 +30,7 @@ import xyz.grauberger.application.masterdata.exceptions.MatchNotFoundException;
 import xyz.grauberger.application.masterdata.exceptions.PlayerNotFoundException;
 import xyz.grauberger.application.masterdata.repositories.MatchRepository;
 import xyz.grauberger.application.masterdata.repositories.PlayerRepository;
-import xyz.grauberger.application.masterdata.services.MatchVideoService;
+import xyz.grauberger.application.video.MatchVideoService;
 
 @Service
 @RequiredArgsConstructor

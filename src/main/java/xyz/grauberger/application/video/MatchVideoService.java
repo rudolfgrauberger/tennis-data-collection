@@ -1,4 +1,4 @@
-package xyz.grauberger.application.masterdata.services;
+package xyz.grauberger.application.video;
 
 import org.springframework.stereotype.Service;
 

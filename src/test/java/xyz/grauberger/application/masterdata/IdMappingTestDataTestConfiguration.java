@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 
-import xyz.grauberger.application.fdi.provider.DataProvider;
+import xyz.grauberger.application.fdi.DataProvider;
 import xyz.grauberger.application.masterdata.repositories.CompetitionRepository;
 import xyz.grauberger.application.masterdata.repositories.MatchRepository;
 import xyz.grauberger.application.masterdata.repositories.PlayerRepository;

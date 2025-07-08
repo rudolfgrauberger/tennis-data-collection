@@ -1,6 +1,2 @@
-@org.springframework.modulith.ApplicationModule(
-        type = ApplicationModule.Type.OPEN
-)
+@org.springframework.modulith.ApplicationModule
 package xyz.grauberger.application.collection;
-
-import org.springframework.modulith.ApplicationModule;

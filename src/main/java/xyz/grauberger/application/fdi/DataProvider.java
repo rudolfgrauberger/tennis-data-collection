@@ -1,4 +1,4 @@
-package xyz.grauberger.application.fdi.provider;
+package xyz.grauberger.application.fdi;
 
 public enum DataProvider {
     EXAMPLE_COM("Example.com"),

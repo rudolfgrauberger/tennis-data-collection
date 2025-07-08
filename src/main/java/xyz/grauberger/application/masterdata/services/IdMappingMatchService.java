@@ -3,7 +3,7 @@ package xyz.grauberger.application.masterdata.services;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import xyz.grauberger.application.fdi.provider.DataProvider;
+import xyz.grauberger.application.fdi.DataProvider;
 import xyz.grauberger.application.masterdata.repositories.MatchMappingEntityRepository;
 
 @Service

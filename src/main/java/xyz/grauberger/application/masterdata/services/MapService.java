@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import xyz.grauberger.application.fdi.provider.DataProvider;
+import xyz.grauberger.application.fdi.DataProvider;
 import xyz.grauberger.application.masterdata.entities.mapping.CompetitionMappingEntity;
 import xyz.grauberger.application.masterdata.entities.mapping.CompetitionMappingId;
 import xyz.grauberger.application.masterdata.entities.mapping.MatchMappingEntity;

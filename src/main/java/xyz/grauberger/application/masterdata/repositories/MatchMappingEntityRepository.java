@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import xyz.grauberger.application.fdi.provider.DataProvider;
+import xyz.grauberger.application.fdi.DataProvider;
 import xyz.grauberger.application.masterdata.entities.mapping.MatchMappingEntity;
 import xyz.grauberger.application.masterdata.entities.mapping.MatchMappingId;
 

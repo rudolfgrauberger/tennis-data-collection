@@ -6,7 +6,6 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import xyz.grauberger.application.fdi.provider.DataProvider;
 import xyz.grauberger.application.fdi.provider.examplecom.repositories.ExampleComMatchRepository;
 import xyz.grauberger.application.fdi.provider.otherapi.repositories.OtherApiMatchRepository;
 

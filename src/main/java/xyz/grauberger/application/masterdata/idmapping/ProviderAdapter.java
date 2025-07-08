@@ -3,7 +3,7 @@ package xyz.grauberger.application.masterdata.idmapping;
 import java.util.List;
 import java.util.Optional;
 
-import xyz.grauberger.application.fdi.provider.DataProvider;
+import xyz.grauberger.application.fdi.DataProvider;
 
 /**
  * Interface for adapting different data providers to a common format.

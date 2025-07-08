@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import xyz.grauberger.application.fdi.provider.DataProvider;
-import xyz.grauberger.application.fdi.provider.examplecom.repositories.ExampleComCompetitionRepository;
-import xyz.grauberger.application.fdi.provider.examplecom.repositories.ExampleComMatchRepository;
+import xyz.grauberger.application.fdi.DataProvider;
+import xyz.grauberger.application.fdi.DataProviderCompetitionService;
+import xyz.grauberger.application.fdi.DataProviderMatchService;
 import xyz.grauberger.application.masterdata.idmapping.ProviderAdapter;
 import xyz.grauberger.application.masterdata.idmapping.ProviderCompetition;
 import xyz.grauberger.application.masterdata.idmapping.ProviderMatch;
@@ -22,44 +22,46 @@ import xyz.grauberger.application.masterdata.idmapping.ProviderPlayer;
 @Service
 public class ExampleComAdapter implements ProviderAdapter {
 
-    private final ExampleComCompetitionRepository exampleComCompetitionRepository;
-    private final ExampleComMatchRepository exampleComMatchRepository;
+    private final DataProviderCompetitionService competitionService;
+    private final DataProviderMatchService matchService;
 
-    public ExampleComAdapter(ExampleComCompetitionRepository exampleComCompetitionRepository,
-            ExampleComMatchRepository exampleComMatchRepository) {
-        this.exampleComCompetitionRepository = exampleComCompetitionRepository;
-        this.exampleComMatchRepository = exampleComMatchRepository;
+    private static final DataProvider provider = DataProvider.EXAMPLE_COM;
+
+    public ExampleComAdapter(DataProviderCompetitionService competitionService,
+            DataProviderMatchService matchService) {
+        this.competitionService = competitionService;
+        this.matchService = matchService;
     }
 
     @Override
     public DataProvider provider() {
-        return DataProvider.EXAMPLE_COM;
+        return provider;
     }
 
     @Override
     public List<ProviderMatch> matches() {
-        return exampleComMatchRepository.findAll().stream()
-                .map(match -> new ProviderMatch(match.getId(), match.getName(), match.getMatchDate()))
+        return matchService.matches(provider).stream()
+                .map(match -> new ProviderMatch(match.id(), match.name(), match.matchDate()))
                 .toList();
     }
 
     @Override
     public Optional<ProviderMatch> matchById(String id) {
-        return exampleComMatchRepository.findById(id)
-                .map(match -> new ProviderMatch(match.getId(), match.getName(), match.getMatchDate()));
+        return matchService.matchById(id, provider)
+                .map(match -> new ProviderMatch(match.id(), match.name(), match.matchDate()));
     }
 
     @Override
     public List<ProviderCompetition> competitions() {
-        return exampleComCompetitionRepository.findAll().stream()
-                .map(comp -> new ProviderCompetition(comp.getId(), comp.getName()))
+        return competitionService.competitions(provider).stream()
+                .map(comp -> new ProviderCompetition(comp.id(), comp.name()))
                 .toList();
     }
 
     @Override
     public Optional<ProviderCompetition> competitionById(String id) {
-        return exampleComCompetitionRepository.findById(id)
-                .map(comp -> new ProviderCompetition(comp.getId(), comp.getName()));
+        return competitionService.competitionById(id, provider)
+                .map(comp -> new ProviderCompetition(comp.id(), comp.name()));
     }
 
     @Override

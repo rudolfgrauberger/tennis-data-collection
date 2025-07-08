@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import xyz.grauberger.application.fdi.provider.DataProvider;
+import xyz.grauberger.application.fdi.DataProvider;
 import xyz.grauberger.application.masterdata.dtos.mapping.MasterdataCompetitionDto;
 import xyz.grauberger.application.masterdata.dtos.mapping.MasterdataMatchDto;
 import xyz.grauberger.application.masterdata.dtos.mapping.MasterdataPlayerDto;

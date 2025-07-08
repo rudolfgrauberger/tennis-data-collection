@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import xyz.grauberger.application.fdi.provider.DataProvider;
+import xyz.grauberger.application.fdi.DataProvider;
 import xyz.grauberger.application.masterdata.dtos.mapping.MasterdataMatchDto;
 import xyz.grauberger.application.masterdata.idmapping.Mapping;
 import xyz.grauberger.application.masterdata.idmapping.ProviderMatch;

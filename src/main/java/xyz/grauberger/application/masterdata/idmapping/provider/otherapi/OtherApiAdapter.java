@@ -2,14 +2,13 @@ package xyz.grauberger.application.masterdata.idmapping.provider.otherapi;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import xyz.grauberger.application.fdi.provider.DataProvider;
-import xyz.grauberger.application.fdi.provider.otherapi.repositories.OtherApiCompetitionRepository;
-import xyz.grauberger.application.fdi.provider.otherapi.repositories.OtherApiMatchRepository;
-import xyz.grauberger.application.fdi.provider.otherapi.repositories.OtherApiPlayerRepository;
+import xyz.grauberger.application.fdi.DataProvider;
+import xyz.grauberger.application.fdi.DataProviderCompetitionService;
+import xyz.grauberger.application.fdi.DataProviderMatchService;
+import xyz.grauberger.application.fdi.DataProviderPlayerService;
 import xyz.grauberger.application.masterdata.idmapping.ProviderAdapter;
 import xyz.grauberger.application.masterdata.idmapping.ProviderCompetition;
 import xyz.grauberger.application.masterdata.idmapping.ProviderMatch;
@@ -24,62 +23,61 @@ import xyz.grauberger.application.masterdata.idmapping.ProviderPlayer;
 @Service
 public class OtherApiAdapter implements ProviderAdapter{
 
-    private final OtherApiCompetitionRepository otherApiCompetitionRepository;
-    private final OtherApiMatchRepository otherApiMatchRepository;
-    private final OtherApiPlayerRepository otherApiPlayerRepository;
+    private final DataProviderCompetitionService competitionService;
+    private final DataProviderMatchService matchService;
+    private final DataProviderPlayerService playerService;
 
-    public OtherApiAdapter(OtherApiCompetitionRepository otherApiCompetitionRepository,
-            OtherApiMatchRepository otherApiMatchRepository,
-            OtherApiPlayerRepository otherApiPlayerRepository) {
-        this.otherApiCompetitionRepository = otherApiCompetitionRepository;
-        this.otherApiMatchRepository = otherApiMatchRepository;
-        this.otherApiPlayerRepository = otherApiPlayerRepository;
+    private static final DataProvider provider = DataProvider.OTHER_API;
+
+    public OtherApiAdapter(DataProviderCompetitionService competitionService,
+            DataProviderMatchService matchService,
+            DataProviderPlayerService playerService) {
+        this.competitionService = competitionService;
+        this.matchService = matchService;
+        this.playerService = playerService;
     }
 
     @Override
     public DataProvider provider() {
-        return DataProvider.OTHER_API;
+        return provider;
     }
 
     @Override
     public List<ProviderMatch> matches() {
-        return otherApiMatchRepository.findAll().stream()
-                .map(match -> new ProviderMatch(match.getId().toString(), match.getName(), match.getMatchDate()))
+        return matchService.matches(provider).stream()
+                .map(match -> new ProviderMatch(match.id(), match.name(), match.matchDate()))
                 .toList();
     }
 
     @Override
     public Optional<ProviderMatch> matchById(String id) {
-        final var providerId = UUID.fromString(id);
-        return otherApiMatchRepository.findById(providerId)
-                .map(match -> new ProviderMatch(match.getId().toString(), match.getName(), match.getMatchDate()));
+        return matchService.matchById(id, provider)
+                .map(match -> new ProviderMatch(match.id(), match.name(), match.matchDate()));
     }
 
     @Override
     public List<ProviderCompetition> competitions() {
-        return otherApiCompetitionRepository.findAll().stream()
-                .map(comp -> new ProviderCompetition(comp.getId().toString(), comp.getName()))
+        return competitionService.competitions(provider).stream()
+                .map(comp -> new ProviderCompetition(comp.id(), comp.name()))
                 .toList();
     }
 
     @Override
     public Optional<ProviderCompetition> competitionById(String id) {
-        final var providerId = UUID.fromString(id);
-        return otherApiCompetitionRepository.findById(providerId)
-                .map(comp -> new ProviderCompetition(comp.getId().toString(), comp.getName()));
+        return competitionService.competitionById(id, provider)
+                .map(comp -> new ProviderCompetition(comp.id(), comp.name()));
     }
 
     @Override
     public List<ProviderPlayer> players() {
-        return otherApiPlayerRepository.findAll().stream()
-                .map(player -> new ProviderPlayer(player.getId().toString(), player.getName(), player.getBirthDate()))
+        return playerService.players(provider).stream()
+                .map(player -> new ProviderPlayer(player.id(), player.name(), player.birthDate()))
                 .toList();
     }
 
     @Override
     public Optional<ProviderPlayer> playerById(String id) {
-        final var providerId = UUID.fromString(id);
-        return otherApiPlayerRepository.findById(providerId)
-                .map(player -> new ProviderPlayer(player.getId().toString(), player.getName(), player.getBirthDate()));
+        return playerService.playerById(id, provider)
+                .map(player -> new ProviderPlayer(player.id(), player.name(), player.birthDate()));
     }
 }

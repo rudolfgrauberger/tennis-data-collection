@@ -178,6 +178,10 @@
             <artifactId>spring-modulith-actuator</artifactId>
         </dependency>
         <dependency>
+            <artifactId>spring-modulith-events-api</artifactId>
+            <groupId>org.springframework.modulith</groupId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.modulith</groupId>
             <artifactId>spring-modulith-starter-test</artifactId>
             <scope>test</scope>
@@ -221,6 +225,10 @@
 
 	<build>
 		<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

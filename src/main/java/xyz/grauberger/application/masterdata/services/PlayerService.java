@@ -2,13 +2,16 @@ package xyz.grauberger.application.masterdata.services;
 
 import java.util.List;
 
+import org.springframework.modulith.events.ApplicationModuleListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import xyz.grauberger.application.fdi.NewPlayerAvailable;
 import xyz.grauberger.application.masterdata.dtos.player.PlayerDetailDto;
 import xyz.grauberger.application.masterdata.dtos.player.PlayerListDto;
 import xyz.grauberger.application.masterdata.dtos.player.PlayerInputDto;
+import xyz.grauberger.application.masterdata.entities.player.Gender;
 import xyz.grauberger.application.masterdata.entities.player.Player;
 import xyz.grauberger.application.masterdata.exceptions.PlayerNotFoundException;
 import xyz.grauberger.application.masterdata.repositories.PlayerRepository;
@@ -79,5 +82,18 @@ public class PlayerService {
     @Transactional
     public void deletePlayer(long id) {
         playerRepository.deleteById(id);
+    }
+
+    @ApplicationModuleListener
+    public void handleNewPlayerEvent(NewPlayerAvailable event) {
+        final var gender = switch(event.gender()) {
+            case NewPlayerAvailable.Gender.UNKNOWN -> null;
+            case NewPlayerAvailable.Gender.MALE -> Gender.MEN;
+            case NewPlayerAvailable.Gender.FEMALE -> Gender.WOMEN;
+        };
+
+        final var player = new Player(event.firstName(), event.lastName(), gender, event.birthDate());
+
+        playerRepository.save(player);
     }
 }

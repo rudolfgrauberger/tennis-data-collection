@@ -15,7 +15,7 @@ The architecture consists of several specialized modules:
 - **Masterdata**: Reference data management for players, tournaments, and matches
 - **Collection**: Manual data collection
 - **FDI**: Data integration and transformation layer
-- **IDMapping**: Entity resolution and identifier mapping across different data sources
+- **Video**: All about the videos for the matches
 
 The system is designed to handle the complexities typically found in sports data environments, including multiple data formats, varying update frequencies, and the need to correlate information across different external data providers.
 
@@ -29,11 +29,10 @@ The system is designed to handle the complexities typically found in sports data
 ```
 tennis-date-collection/
 ├── pom.xml
-├── main/
 ├── masterdata/
 ├── collection/
 ├── fdi/
-└── idmapping/
+└── video/
 ```
 
 ## Getting Started
@@ -42,6 +41,14 @@ The application can be easily started on the local developer environment with th
 
 ```bash
 ./mvnw spring-boot:test-run
+```
+
+## Testing
+
+This project includes both unit tests and integration tests. Both types of tests can be executed together using the following Maven command:
+
+```bash
+./mvnw clean verify
 ```
 
 ### API Documentation

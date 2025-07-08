@@ -1,8 +1,8 @@
 package xyz.grauberger.application;
 
-import xyz.grauberger.application.idmapping.IdMappingTestDataTestConfiguration;
 import xyz.grauberger.application.collection.CollectionTestDataTestConfiguration;
 import xyz.grauberger.application.fdi.FdiTestDataTestConfiguration;
+import xyz.grauberger.application.masterdata.IdMappingTestDataTestConfiguration;
 import xyz.grauberger.application.masterdata.MasterdataTestDataConfiguration;
 
 import org.junit.jupiter.api.Test;

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import lombok.RequiredArgsConstructor;
 import xyz.grauberger.application.fdi.FdiMatchService;
 import xyz.grauberger.application.fdi.provider.DataProvider;
-import xyz.grauberger.application.idmapping.service.IdMappingMatchService;
 import xyz.grauberger.application.masterdata.repositories.MatchRepository;
 
 @Component
